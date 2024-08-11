@@ -3,6 +3,12 @@ import { config } from "./config";
 import mongoose from "mongoose";
 import { RegisterRoutes } from "../build/routes";
 import cookieParser from "cookie-parser";
+import cors from "cors";
+
+const corsOptions = {
+  origin: process.env.CORS_ALLOWED_ADD, // Replace with the origin you want to allow
+  optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
+};
 
 const app = express();
 
@@ -11,6 +17,7 @@ const app = express();
 // mongoose.connect(url);
 // const con = mongoose.connection;
 app.use(json()); // Parse JSON bodies
+app.use(cors(corsOptions));
 app.use(urlencoded({ extended: true })); // Parse URL-encoded bodies
 app.use(cookieParser());
 

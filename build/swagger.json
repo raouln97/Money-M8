@@ -49,6 +49,23 @@
 				],
 				"type": "object",
 				"additionalProperties": false
+			},
+			"UserCardDetailDTO": {
+				"properties": {
+					"creditCardId": {
+						"type": "string"
+					},
+					"dueDate": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"creditCardId",
+					"dueDate"
+				],
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {
@@ -283,6 +300,64 @@
 						}
 					}
 				]
+			}
+		},
+		"/userCards": {
+			"get": {
+				"operationId": "GetUserCards",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"UserCards"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": []
+			}
+		},
+		"/userCards/create": {
+			"post": {
+				"operationId": "CreateUserCards",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"UserCards"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UserCardDetailDTO"
+							}
+						}
+					}
+				}
 			}
 		},
 		"/test": {

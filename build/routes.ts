@@ -9,6 +9,8 @@ import { BankInformationController } from './../src/BankInfo/bankInfo.controller
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { CreditCardInformationController } from './../src/CreditCardInfo/creditCardInfo.controller';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { UserCardInfoController } from './../src/Profile/usercards.controller';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { PartnerProfileController } from './../src/test/test.controller';
 import { expressAuthentication } from './../src/middleware/auth.middleware';
 // @ts-ignore - no great way to install types from subpackage
@@ -40,6 +42,15 @@ const models: TsoaRoute.Models = {
         "dataType": "refObject",
         "properties": {
             "email": {"dataType":"string","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "UserCardDetailDTO": {
+        "dataType": "refObject",
+        "properties": {
+            "creditCardId": {"dataType":"string","required":true},
+            "dueDate": {"dataType":"datetime","required":true},
         },
         "additionalProperties": false,
     },
@@ -200,6 +211,59 @@ export function RegisterRoutes(app: Router) {
 
 
               const promise = controller.getAllBanks.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/userCards',
+            authenticateMiddleware([{"jwt":[]}]),
+            ...(fetchMiddlewares<RequestHandler>(UserCardInfoController)),
+            ...(fetchMiddlewares<RequestHandler>(UserCardInfoController.prototype.getUserCards)),
+
+            function UserCardInfoController_getUserCards(request: any, response: any, next: any) {
+            const args = {
+                    req: {"in":"request","name":"req","required":true,"dataType":"object"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new UserCardInfoController();
+
+
+              const promise = controller.getUserCards.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.post('/userCards/create',
+            authenticateMiddleware([{"jwt":[]}]),
+            ...(fetchMiddlewares<RequestHandler>(UserCardInfoController)),
+            ...(fetchMiddlewares<RequestHandler>(UserCardInfoController.prototype.createUserCards)),
+
+            function UserCardInfoController_createUserCards(request: any, response: any, next: any) {
+            const args = {
+                    userCardsDTO: {"in":"body","name":"userCardsDTO","required":true,"ref":"UserCardDetailDTO"},
+                    req: {"in":"request","name":"req","required":true,"dataType":"object"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new UserCardInfoController();
+
+
+              const promise = controller.createUserCards.apply(controller, validatedArgs as any);
               promiseHandler(controller, promise, response, undefined, next);
             } catch (err) {
                 return next(err);

@@ -43,10 +43,10 @@ export class AuthService {
     const accessToken = data.session.access_token;
     const refreshToken = data.session.refresh_token;
 
-    const accessTokenCookie = `accessToken=${accessToken}; HttpOnly; Secure; SameSite=Strict; Max-Age=${
+    const accessTokenCookie = `accessToken=${accessToken}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=${
       3600 * 1000
     };`;
-    const refreshTokenCookie = `refreshToken=${refreshToken}; HttpOnly; Secure; SameSite=Strict; Max-Age=${
+    const refreshTokenCookie = `refreshToken=${refreshToken}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=${
       30 * 24 * 3600 * 1000
     };`;
 
